@@ -13,6 +13,8 @@ html
         p #{guess} is too #{guess < actual ? 'low' : 'high'}!
       else
         p Good job! it was #{actual}. I've got a new number; want to play again?
+    if invalid
+      p That isn't a valid input.
     form(action='/' method='post')
       input(type='text' name='guess')
       button(type='submit') Guess
