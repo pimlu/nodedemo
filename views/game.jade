@@ -1,0 +1,18 @@
+html
+  head
+    title node demo
+    link(rel='stylesheet' href='/css/main.css')
+  body
+    p Play the guessing game!  Number is between 1 and 100.
+    if tries
+      p You've used #{tries} tries.
+    else
+      p Go ahead! Give it a try!
+    if post
+      if guess !== actual
+        p #{guess} is too #{guess < actual ? 'low' : 'high'}!
+      else
+        p Good job! it was #{actual}. I've got a new number; want to play again?
+    form(action='/' method='post')
+      input(type='text' name='guess')
+      button(type='submit') Guess
