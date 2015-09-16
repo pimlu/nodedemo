@@ -2,7 +2,7 @@ var express = require('express');
 
 
 function genNum(session) {
-   session.number = Math.random()*100+1 | 0;
+   session.actual = Math.random()*100+1 | 0;
 }
 
 module.exports = function(app) {
@@ -21,13 +21,13 @@ module.exports = function(app) {
     
     //increment their tries, and give them a secret number to guess for if there isn't one already
     req.session.tries = (req.session.tries || 0) + 1;
-    if(!req.session.number) {
+    if(!req.session.actual) {
       genNum(req.session);
     }
     
     var tries = req.session.tries; //stored in session
     var guess = +req.body.guess; //stored in post body as a string from the textfield
-    var actual = req.session.number; //stored in session
+    var actual = req.session.actual; //stored in session
     
     //if they got it right, reset tries and generate a new number
     if(guess === actual) {
